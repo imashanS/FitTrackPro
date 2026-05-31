@@ -15,6 +15,7 @@ import com.fittrackpro.entity.User;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class WorkoutService {
@@ -204,6 +205,18 @@ public class WorkoutService {
                         : workouts.get(workouts.size() - 1)
                         .getWeight();
 
+        String mostPerformedExercise =
+                workouts.stream()
+                        .collect(Collectors.groupingBy(
+                                Workout::getExerciseName,
+                                Collectors.counting()
+                        ))
+                        .entrySet()
+                        .stream()
+                        .max(Map.Entry.comparingByValue())
+                        .map(Map.Entry::getKey)
+                        .orElse("No workouts");
+
         Map<String, Object> analytics =
                 new HashMap<>();
 
@@ -211,6 +224,10 @@ public class WorkoutService {
         analytics.put("totalVolume", totalVolume);
         analytics.put("latestExercise", latestExercise);
         analytics.put("latestWeight", latestWeight);
+        analytics.put(
+                "mostPerformedExercise",
+                mostPerformedExercise
+        );
 
         return analytics;
     }
