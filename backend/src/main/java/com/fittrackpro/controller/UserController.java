@@ -1,5 +1,6 @@
 package com.fittrackpro.controller;
 
+import com.fittrackpro.dto.ChangePasswordRequest;
 import com.fittrackpro.dto.UserRequestDTO;
 import com.fittrackpro.dto.UserResponseDTO;
 import com.fittrackpro.entity.User;
@@ -83,6 +84,19 @@ public class UserController {
         String email = authentication.getName();
 
         return userService.updateCurrentUser(email, dto);
+    }
+
+    @PutMapping("/me/password")
+    public String changePassword(
+            Authentication authentication,
+            @RequestBody ChangePasswordRequest request
+    ) {
+
+        String email = authentication.getName();
+
+        userService.changePassword(email, request);
+
+        return "Password updated successfully";
     }
 
 }
