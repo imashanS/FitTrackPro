@@ -18,6 +18,7 @@ export default function DashboardPage() {
         latestExercise: "",
         mostPerformedExercise: "",
         workoutsThisMonth: 0,
+        averageWeight: 0,
     });
 
     useEffect(() => {
@@ -117,6 +118,17 @@ export default function DashboardPage() {
 
                     <p className="text-3xl mt-4 text-black">
                         {dashboard.workoutsThisMonth}
+                    </p>
+
+                </div>
+                <div className="bg-white p-6 rounded-2xl shadow">
+
+                    <h2 className="text-xl font-semibold text-black">
+                        Average Weight
+                    </h2>
+
+                    <p className="text-3xl mt-4 text-black">
+                        {dashboard.averageWeight} kg
                     </p>
 
                 </div>

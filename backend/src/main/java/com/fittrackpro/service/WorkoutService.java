@@ -228,6 +228,15 @@ public class WorkoutService {
                                                 LocalDate.now().getYear()
                         )
                         .count();
+        double averageWeight =
+                workouts.isEmpty()
+                        ? 0
+                        : workouts.stream()
+                        .mapToDouble(
+                                Workout::getWeight
+                        )
+                        .average()
+                        .orElse(0);
 
         Map<String, Object> analytics =
                 new HashMap<>();
@@ -243,6 +252,10 @@ public class WorkoutService {
         analytics.put(
                 "workoutsThisMonth",
                 workoutsThisMonth
+        );
+        analytics.put(
+                "averageWeight",
+                averageWeight
         );
 
         return analytics;
