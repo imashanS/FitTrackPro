@@ -17,6 +17,7 @@ export default function DashboardPage() {
         recentWorkoutCount: 0,
         latestExercise: "",
         mostPerformedExercise: "",
+        workoutsThisMonth: 0,
     });
 
     useEffect(() => {
@@ -107,6 +108,17 @@ export default function DashboardPage() {
                     <p className="text-3xl mt-4 text-black">
                         {dashboard.mostPerformedExercise}
                     </p>
+                </div>
+                <div className="bg-white p-6 rounded-2xl shadow">
+
+                    <h2 className="text-xl font-semibold text-black">
+                        Workouts This Month
+                    </h2>
+
+                    <p className="text-3xl mt-4 text-black">
+                        {dashboard.workoutsThisMonth}
+                    </p>
+
                 </div>
                 <WorkoutChart workouts={workouts} />
 

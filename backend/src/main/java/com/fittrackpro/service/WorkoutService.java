@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.fittrackpro.repository.UserRepository;
 import com.fittrackpro.entity.User;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -217,6 +218,17 @@ public class WorkoutService {
                         .map(Map.Entry::getKey)
                         .orElse("No workouts");
 
+        long workoutsThisMonth =
+                workouts.stream()
+                        .filter(w ->
+                                w.getWorkoutDate() != null &&
+                                        w.getWorkoutDate().getMonth() ==
+                                                LocalDate.now().getMonth() &&
+                                        w.getWorkoutDate().getYear() ==
+                                                LocalDate.now().getYear()
+                        )
+                        .count();
+
         Map<String, Object> analytics =
                 new HashMap<>();
 
@@ -227,6 +239,10 @@ public class WorkoutService {
         analytics.put(
                 "mostPerformedExercise",
                 mostPerformedExercise
+        );
+        analytics.put(
+                "workoutsThisMonth",
+                workoutsThisMonth
         );
 
         return analytics;
