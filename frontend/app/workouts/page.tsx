@@ -102,6 +102,28 @@ export default function WorkoutsPage() {
             console.log(error);
         }
     };
+    const handleDeleteWorkout = async (id: number) => {
+
+        const token = localStorage.getItem("token");
+
+        try {
+
+            await axios.delete(
+                `http://localhost:8080/api/workouts/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            fetchWorkouts();
+
+        } catch (error) {
+
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -170,12 +192,18 @@ export default function WorkoutsPage() {
                                 <td className="p-4">{workout.sets}</td>
                                 <td className="p-4">{workout.reps}</td>
                                 <td className="p-4">{workout.weight}</td>
-                                <td className="p-4">  {/* FIX 1: Edit button moved into each row */}
+                                <td className="p-4 flex gap-2">
                                     <button
                                         onClick={() => setEditingWorkout(workout)}
                                         className="bg-blue-500 text-white px-3 py-1 rounded-lg"
                                     >
                                         Edit
+                                    </button>
+                                    <button
+                                        onClick={() => handleDeleteWorkout(workout.id)}
+                                        className="bg-red-500 text-white px-3 py-1 rounded-lg"
+                                    >
+                                        Delete
                                     </button>
                                 </td>
                             </tr>
