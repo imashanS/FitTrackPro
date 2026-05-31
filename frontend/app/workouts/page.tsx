@@ -12,6 +12,8 @@ export default function WorkoutsPage() {
     const [reps, setReps] = useState(0);
     const [weight, setWeight] = useState(0);
 
+    const [searchTerm, setSearchTerm] = useState("");
+
     const fetchWorkouts = async () => {
 
         const token = localStorage.getItem("token");
@@ -124,6 +126,11 @@ export default function WorkoutsPage() {
             console.log(error);
         }
     };
+    const filteredWorkouts = workouts.filter((workout: any) =>
+        workout.exerciseName
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
+    );
 
     return (
         <>
@@ -172,6 +179,13 @@ export default function WorkoutsPage() {
                             Create Workout
                         </button>
                     </div>
+                    <input
+                        type="text"
+                        placeholder="Search workouts..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="p-3 rounded-xl bg-black border border-white/10 mb-4 w-full"
+                    />
 
                     {/* Workouts Table */}
                     <table className="w-full border border-white/10">
@@ -186,7 +200,7 @@ export default function WorkoutsPage() {
                         </tr>
                         </thead>
                         <tbody>
-                        {workouts.map((workout: any) => (
+                        {filteredWorkouts.map((workout: any) => (
                             <tr key={workout.id} className="border-t border-white/10">
                                 <td className="p-4">{workout.exerciseName}</td>
                                 <td className="p-4">{workout.sets}</td>
