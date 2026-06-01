@@ -21,7 +21,7 @@ export default function WorkoutsPage() {
         try {
 
             const response = await axios.get(
-                "http://localhost:8080/api/workouts/my",
+                `${process.env.NEXT_PUBLIC_API_URL}/api/workouts/my`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ export default function WorkoutsPage() {
         try {
 
             await axios.post(
-                "http://localhost:8080/api/workouts",
+                `${process.env.NEXT_PUBLIC_API_URL}/api/workouts`,
                 {
                     exerciseName,
                     sets,
@@ -86,7 +86,7 @@ export default function WorkoutsPage() {
         try {
 
             await axios.put(
-                `http://localhost:8080/api/workouts/${editingWorkout.id}`,
+                `${process.env.NEXT_PUBLIC_API_URL}/api/workouts/${editingWorkout.id}`,
                 editingWorkout,
                 {
                     headers: {
@@ -111,7 +111,7 @@ export default function WorkoutsPage() {
         try {
 
             await axios.delete(
-                `http://localhost:8080/api/workouts/${id}`,
+                `${process.env.NEXT_PUBLIC_API_URL}/api/workouts/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -179,13 +179,7 @@ export default function WorkoutsPage() {
                             Create Workout
                         </button>
                     </div>
-                    <input
-                        type="text"
-                        placeholder="Search workouts..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="p-3 rounded-xl bg-black border border-white/10 mb-4 w-full"
-                    />
+
 
                     {/* Workouts Table */}
                     <table className="w-full border border-white/10">

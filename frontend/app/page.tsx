@@ -28,7 +28,7 @@ export default function Home() {
 
         axios
 
-            .get("http://localhost:8080/api/dashboard/1")
+            .get(`${process.env.NEXT_PUBLIC_API_URL}/api/workouts`)
 
             .then((response) => {
 

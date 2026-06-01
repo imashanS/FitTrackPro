@@ -30,7 +30,7 @@ export default function DashboardPage() {
             return;
         }
         axios.get(
-            "http://localhost:8080/api/workouts/my",
+            `${process.env.NEXT_PUBLIC_API_URL}/api/users/me`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ export default function DashboardPage() {
             });
 
         axios.get(
-            "http://localhost:8080/api/workouts/analytics",
+            `${process.env.NEXT_PUBLIC_API_URL}/api/workouts/analytics`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

@@ -18,7 +18,7 @@ export default function ProfilePage() {
         const token = localStorage.getItem("token");
 
         axios.get(
-            "http://localhost:8080/api/users/me",
+            `${process.env.NEXT_PUBLIC_API_URL}/api/users/me`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -43,7 +43,7 @@ export default function ProfilePage() {
             setLoading(true);
 
             const response = await axios.put(
-                "http://localhost:8080/api/users/me",
+                `${process.env.NEXT_PUBLIC_API_URL}/api/users/me`,
                 {
                     name: user.name,
                     email: user.email,
@@ -86,7 +86,7 @@ export default function ProfilePage() {
         try {
 
             await axios.put(
-                "http://localhost:8080/api/users/me/password",
+                `${process.env.NEXT_PUBLIC_API_URL}/api/users/me/password`,
                 {
                     currentPassword,
                     newPassword,

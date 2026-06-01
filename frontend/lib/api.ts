@@ -1,7 +1,7 @@
 // lib/api.ts
 import { getToken } from "./auth";
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 type RequestOptions = {
     method?: string;
