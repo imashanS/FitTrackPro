@@ -42,6 +42,7 @@ public class SecurityConfig {
                 new org.springframework.web.cors.CorsConfiguration();
 
         configuration.addAllowedOrigin("http://localhost:3000");
+        configuration.addAllowedOrigin("https://tracro.vercel.app");
 
         configuration.addAllowedMethod("*");
 
