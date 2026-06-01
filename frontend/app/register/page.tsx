@@ -26,7 +26,7 @@ export default function RegisterPage() {
 
         setLoading(true);
         try {
-            await apiRequest("/auth/register", {
+            await apiRequest("api/auth/register", {
                 method: "POST",
                 body: { name, email, password },
                 auth: false,
