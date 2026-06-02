@@ -2,25 +2,14 @@ const features = [
     {
         icon: (
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11 2L13.5 8.5H20L14.5 12.5L16.5 19L11 15L5.5 19L7.5 12.5L2 8.5H8.5L11 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-            </svg>
-        ),
-        title: "AI Performance Engine",
-        description:
-            "Our machine learning model analyses your training patterns, adapts to your recovery, and predicts your peak performance windows.",
-        tag: "Core",
-    },
-    {
-        icon: (
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 16L8 10L12 14L17 8L20 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 <circle cx="20" cy="11" r="1.5" fill="currentColor"/>
                 <circle cx="2" cy="16" r="1.5" fill="currentColor"/>
             </svg>
         ),
-        title: "Real-Time Analytics",
+        title: "Workout Analytics",
         description:
-            "Live biometric dashboards. Monitor volume, intensity, velocity, and recovery metrics with sub-second precision.",
+            "Monitor training volume, workout frequency, and performance trends through a simple analytics dashboard.",
         tag: "Analytics",
     },
     {
@@ -32,10 +21,10 @@ const features = [
                 <path d="M16 13v6M13 16h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
         ),
-        title: "Smart Programming",
+        title: "Workout Management",
         description:
-            "Dynamic periodisation that adjusts weekly. Auto-generate mesocycles, deloads, and progressive overload plans tailored to your goal.",
-        tag: "Planning",
+            "Create, edit, search, and organize your workouts with a streamlined tracking experience.",
+        tag: "Tracking",
     },
     {
         icon: (
@@ -44,10 +33,21 @@ const features = [
                 <path d="M11 7v4l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
         ),
-        title: "Recovery Intelligence",
+        title: "Progress Insights",
         description:
-            "Sleep quality, HRV, and soreness data combined into a single daily readiness score. Know exactly when to push and when to rest.",
-        tag: "Recovery",
+            "Track workout history, monitor consistency, and review recent activity to stay focused on your goals.",
+        tag: "Progress",
+    },
+    {
+        icon: (
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 2L13.5 8.5H20L14.5 12.5L16.5 19L11 15L5.5 19L7.5 12.5L2 8.5H8.5L11 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+            </svg>
+        ),
+        title: "Secure Authentication",
+        description:
+            "Protected accounts powered by JWT authentication and encrypted password storage.",
+        tag: "Security",
     },
     {
         icon: (
@@ -55,10 +55,10 @@ const features = [
                 <path d="M3 7h16M3 11h16M3 15h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
         ),
-        title: "Exercise Library",
+        title: "Profile Management",
         description:
-            "340+ exercises with 3D motion overlays. Technique scoring powered by pose estimation ensures every rep counts.",
-        tag: "Library",
+            "Manage account details, update personal information, and maintain your training profile.",
+        tag: "Profile",
     },
     {
         icon: (
@@ -67,10 +67,10 @@ const features = [
                 <circle cx="12" cy="8" r="1.5" fill="currentColor"/>
             </svg>
         ),
-        title: "Wearable Sync",
+        title: "Cloud Access",
         description:
-            "Native integrations with Apple Watch, Garmin, Polar, and Whoop. All your data in one unified platform.",
-        tag: "Integrations",
+            "Access your fitness data through a cloud-hosted platform built with modern web technologies.",
+        tag: "Cloud",
     },
 ];
 
@@ -86,12 +86,11 @@ export default function Features() {
                     </p>
                     <h2 className="font-display text-5xl lg:text-7xl text-white leading-[0.92] mb-6">
                         BUILT FOR<br />
-                        <span className="text-white/25">SERIOUS</span><br />
-                        ATHLETES.
+                        <span className="text-white/25">CONSISTENT</span><br />
+                        PROGRESS.
                     </h2>
                     <p className="text-white/45 text-base lg:text-lg leading-relaxed font-light">
-                        Every feature is engineered around one goal: helping you reach your
-                        genetic ceiling faster.
+                        Designed to help users track workouts, monitor progress, and make better training decisions through data.
                     </p>
                 </div>
 

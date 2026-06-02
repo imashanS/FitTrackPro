@@ -25,8 +25,7 @@ export default function CTA() {
 
                 {/* Subtext */}
                 <p className="text-white/45 text-base lg:text-lg max-w-xl mx-auto leading-relaxed mb-12 font-light">
-                    Join over 12,000 athletes who are training with data, not guesswork.
-                    Free to start. No credit card required.
+                    Track workouts, monitor progress, and gain insights from your training data. Built to support your fitness journey.
                 </p>
 
                 {/* Email input + CTA */}
@@ -37,17 +36,21 @@ export default function CTA() {
                         className="flex-1 px-5 py-4 rounded-full bg-white/[0.05] border border-white/[0.1] text-white placeholder-white/25 text-sm focus:outline-none focus:border-[#e8ff47]/40 transition-colors duration-200"
                     />
                     <button className="btn-primary px-8 py-4 rounded-full bg-[#e8ff47] text-black font-semibold text-sm tracking-wide whitespace-nowrap">
-                        Get Early Access
+                        Get Started
                     </button>
                 </div>
 
                 <p className="text-xs text-white/25">
-                    No spam. No credit card. Cancel anytime.
+                    Secure access. Cloud hosted. Built with modern technologies.
                 </p>
 
                 {/* Trust badges */}
                 <div className="flex items-center justify-center gap-6 mt-12 flex-wrap">
-                    {["256-bit encrypted", "GDPR compliant", "SOC 2 certified"].map((badge) => (
+                    {[
+                        "Secure Login",
+                        "Cloud Hosted",
+                        "Analytics Dashboard"
+                    ].map((badge) => (
                         <div key={badge} className="flex items-center gap-2 text-xs text-white/30">
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                                 <path d="M2 6l3 3 5-5" stroke="#e8ff47" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

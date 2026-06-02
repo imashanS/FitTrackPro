@@ -1,8 +1,8 @@
 const stats = [
-    { value: "12K+", label: "Active Athletes" },
-    { value: "98M+", label: "Reps Tracked" },
-    { value: "4.9★", label: "App Rating" },
-    { value: "340+", label: "Workout Types" },
+    { value: "24/7", label: "Cloud Access" },
+    { value: "CRUD", label: "Workout Tracking" },
+    { value: "JWT", label: "Secure Login" },
+    { value: "Insights", label: "Analytics Dashboard" },
 ];
 
 export default function Stats() {
