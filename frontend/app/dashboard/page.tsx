@@ -7,7 +7,6 @@ import WorkoutChart from "@/components/dashboard/WorkoutChart";
 import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
 
 export default function DashboardPage() {
-
     const router = useRouter();
     const [workouts, setWorkouts] = useState([]);
     const [dashboard, setDashboard] = useState({
@@ -22,15 +21,16 @@ export default function DashboardPage() {
     });
 
     useEffect(() => {
-
         const token = localStorage.getItem("token");
 
         if (!token) {
             router.push("/login");
             return;
         }
+
+        // FIX: Hit your actual workout retrieval endpoint instead of /api/users/me
         axios.get(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/users/me`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/workouts`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -38,9 +38,19 @@ export default function DashboardPage() {
             }
         )
             .then((response) => {
-                setWorkouts(response.data);
+                // Defensive check: handle both paginated responses (.content) and raw arrays
+                const workoutData = Array.isArray(response.data)
+                    ? response.data
+                    : response.data?.content || [];
+
+                setWorkouts(workoutData);
+            })
+            .catch((error) => {
+                console.error("Error fetching workouts:", error);
+                setWorkouts([]); // Fallback to safe empty array on failure
             });
 
+        // Fetch Analytics Metrics
         axios.get(
             `${process.env.NEXT_PUBLIC_API_URL}/api/workouts/analytics`,
             {
@@ -53,92 +63,57 @@ export default function DashboardPage() {
                 setDashboard(response.data);
             })
             .catch((error) => {
-                console.error(error);
+                console.error("Error fetching analytics:", error);
             });
 
     }, [router]);
 
     return (
-
         <>
-
             <DashboardNavbar />
 
             <main className="min-h-screen bg-[#0a0a0a] text-white p-8">
+                <h1 className="text-4xl font-bold mb-8">
+                    Dashboard
+                </h1>
 
-            <h1 className="text-4xl font-bold text-black">
-                Dashboard
-            </h1>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-white p-6 rounded-2xl shadow">
+                        <h2 className="text-xl font-semibold text-black">Total Workouts</h2>
+                        <p className="text-3xl mt-4 text-black">{dashboard.totalWorkouts}</p>
+                    </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-white p-6 rounded-2xl shadow">
+                        <h2 className="text-xl font-semibold text-black">Latest Weight</h2>
+                        <p className="text-3xl mt-4 text-black">{dashboard.latestWeight} kg</p>
+                    </div>
 
-                <div className="bg-white p-6 rounded-2xl shadow">
-                    <h2 className="text-xl font-semibold text-black">
-                        Total Workouts
-                    </h2>
+                    <div className="bg-white p-6 rounded-2xl shadow">
+                        <h2 className="text-xl font-semibold text-black">Total Volume</h2>
+                        <p className="text-3xl mt-4 text-black">{dashboard.totalVolume}</p>
+                    </div>
 
-                    <p className="text-3xl mt-4 text-black">
-                        {dashboard.totalWorkouts}
-                    </p>
+                    <div className="bg-white p-6 rounded-2xl shadow">
+                        <h2 className="text-xl font-semibold text-black">Most Performed Exercise</h2>
+                        <p className="text-3xl mt-4 text-black">{dashboard.mostPerformedExercise || "N/A"}</p>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-2xl shadow">
+                        <h2 className="text-xl font-semibold text-black">Workouts This Month</h2>
+                        <p className="text-3xl mt-4 text-black">{dashboard.workoutsThisMonth}</p>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-2xl shadow">
+                        <h2 className="text-xl font-semibold text-black">Average Weight</h2>
+                        <p className="text-3xl mt-4 text-black">{dashboard.averageWeight} kg</p>
+                    </div>
                 </div>
 
-                <div className="bg-white p-6 rounded-2xl shadow">
-                    <h2 className="text-xl font-semibold text-black">
-                        Latest Weight
-                    </h2>
-
-                    <p className="text-3xl mt-4 text-black">
-                        {dashboard.latestWeight} kg
-                    </p>
+                {/* Chart section wrapper */}
+                <div className="mt-8">
+                    <WorkoutChart workouts={workouts} />
                 </div>
-
-                <div className="bg-white p-6 rounded-2xl shadow">
-                    <h2 className="text-xl font-semibold text-black">
-                        Total Volume
-                    </h2>
-
-                    <p className="text-3xl mt-4 text-black">
-                        {dashboard.totalVolume}
-                    </p>
-                </div>
-                <div className="bg-white p-6 rounded-2xl shadow">
-                    <h2 className="text-xl font-semibold text-black">
-                        Most Performed Exercise
-                    </h2>
-
-                    <p className="text-3xl mt-4 text-black">
-                        {dashboard.mostPerformedExercise}
-                    </p>
-                </div>
-                <div className="bg-white p-6 rounded-2xl shadow">
-
-                    <h2 className="text-xl font-semibold text-black">
-                        Workouts This Month
-                    </h2>
-
-                    <p className="text-3xl mt-4 text-black">
-                        {dashboard.workoutsThisMonth}
-                    </p>
-
-                </div>
-                <div className="bg-white p-6 rounded-2xl shadow">
-
-                    <h2 className="text-xl font-semibold text-black">
-                        Average Weight
-                    </h2>
-
-                    <p className="text-3xl mt-4 text-black">
-                        {dashboard.averageWeight} kg
-                    </p>
-
-                </div>
-                <WorkoutChart workouts={workouts} />
-
-            </div>
-
             </main>
-
         </>
-
     );
 }
